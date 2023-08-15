@@ -24,8 +24,8 @@ const Auth = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
-    if(isSignup) {
+
+    if (isSignup) {
       dispatch(signup(formData, history));
     } else {
       dispatch(signin(formData, history));
@@ -42,11 +42,11 @@ const Auth = () => {
   };
 
   const googleSuccess = async (res) => {
-    const result = jwtDecode(res.credential); 
+    const result = jwtDecode(res.credential);
     // console.log(result);
     dispatch(gosignin(result, history));
-      // jwt token is there as coded format in oauth2.0
-      // we do so to always send only decoded oauth credential to reducer by dispatch
+    // jwt token is there as coded format in oauth2.0
+    // we do so to always send only decoded oauth credential to reducer by dispatch
   };
 
   const googleFailure = (error) => {
@@ -78,15 +78,14 @@ const Auth = () => {
             {isSignup ? 'Sign Up' : 'Sign In'}
           </Button>
           <Button fullWidth style={{ backgroundColor: 'white', marginBottom: '10px' }}>
-            <GoogleOAuthProvider
-              clientId='**CLIENT_ID**'>
+            <GoogleOAuthProvider clientId="142082843156-4bb0svki5jvschi5qssp5pc1kd5u39fp.apps.googleusercontent.com">
               <div id="signInButton">
-              <GoogleLogin
-                onSuccess={googleSuccess}
-                onError={googleFailure}
-                cookiePolicy='single_host_origin'
-                GsiButtonConfiguration
-              />
+                <GoogleLogin
+                  onSuccess={googleSuccess}
+                  onError={googleFailure}
+                  cookiePolicy='single_host_origin'
+                  GsiButtonConfiguration
+                />
               </div>
             </GoogleOAuthProvider>
           </Button>
